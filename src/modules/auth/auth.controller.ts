@@ -17,13 +17,40 @@ const signupUser = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: 500,
       success: false,
-      // message: error.code === "23505" ? "Email already exists." : "User created successfully.",
-      message: error.message,
+      message:
+        error.code === "23505"
+          ? "Email already exists."
+          : error.code === "23514"
+            ? "Invalid role. Role must be either 'contributor' or 'maintainer'."
+            : "Internal Server Error.",
+      // message: error.message,
       error,
+    });
+  }
+};
+
+// Create user
+const loginUser = async (req: Request, res: Response) => {
+  try {
+    const result = await authService.loginUserIntoDB(req.body);
+    // return console.log(result);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "User logged in successfully.",
+      data: result.data,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 401,
+      success: false,
+      message: error.message || "Invalid credentials.",
+      error: error,
     });
   }
 };
 
 export const authController = {
   signupUser,
+  loginUser,
 };
