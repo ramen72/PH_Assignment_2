@@ -1,10 +1,10 @@
 import app from "./app";
 import { config } from "./config";
-import { connectDB } from "./db";
+import { initializeDatabase } from "./db";
 
 const startServer = async () => {
   try {
-    connectDB();
+    initializeDatabase();
     app.listen(config.port, () => {
       console.log(`Server is running on http://localhost:${config.port}`);
     });
