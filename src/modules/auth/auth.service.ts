@@ -54,7 +54,7 @@ const loginUserIntoDB = async (payload: {
     jwtPayload as JwtPayload,
     config.accessSecret as string,
     {
-      expiresIn: "15m",
+      expiresIn: "15d",
     },
   );
 

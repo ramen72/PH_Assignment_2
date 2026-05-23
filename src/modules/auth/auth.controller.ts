@@ -23,13 +23,12 @@ const signupUser = async (req: Request, res: Response) => {
           : error.code === "23514"
             ? "Invalid role. Role must be either 'contributor' or 'maintainer'."
             : "Internal Server Error.",
-      // message: error.message,
       error,
     });
   }
 };
 
-// Create user
+// Login User
 const loginUser = async (req: Request, res: Response) => {
   try {
     const result = await authService.loginUserIntoDB(req.body);

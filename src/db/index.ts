@@ -28,11 +28,11 @@ export const initializeDatabase = async () => {
             title VARCHAR(150) NOT NULL,
             description TEXT CHECK(LENGTH(description) >= 20) NOT NULL,
             type VARCHAR(20) CHECK (type IN ('bug', 'feature_request')) NOT NULL,
-            status VARCHAR(20) DEFAULT 'open' CHECK (status IN ('open', 'in-progress', 'resolved')) NOT NULL,
+            status VARCHAR(20) DEFAULT 'open' CHECK (status IN ('open', 'in_progress', 'resolved')) NOT NULL,
             reporter_id INTEGER NOT NULL,
             
-            createdAt TIMESTAMP DEFAULT NOW(),
-            updatedAt TIMESTAMP DEFAULT NOW()
+            created_at TIMESTAMP DEFAULT NOW(),
+            updated_at TIMESTAMP DEFAULT NOW()
         )
     `);
 

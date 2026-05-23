@@ -1,12 +1,8 @@
-import express, {
-  type Application,
-  type Request,
-  type Response,
-} from "express";
+import express, { type Application } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { userRoute } from "./modules/user/user.router";
 import { authRoute } from "./modules/auth/auth.route";
+import { issueRoute } from "./modules/issues/issues.route";
 
 const app: Application = express();
 
@@ -16,7 +12,6 @@ app.use(express.text()); //* middleware for read TextData from body
 app.use(express.urlencoded({ extended: true })); //* middleware for read En-coded Data
 
 // * Middleware for log request
-// app.use(logger);
 app.use(
   cors({
     origin: "http://localhost:9000", // Replace with your frontend URL
@@ -25,7 +20,7 @@ app.use(
   }),
 );
 
-app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/issues", issueRoute);
 
 export default app;
